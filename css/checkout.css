@@ -1,0 +1,46 @@
+.container {
+  padding: 50px;
+}
+
+.container h2 {
+  font-size: 2rem;
+  margin: 10px 0px;
+}
+
+.container #keranjang-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.container #keranjang-container .keranjang-item {
+  padding: 20px;
+  border: 1px solid #010101;
+  border-radius: 10px;
+}
+
+.container #keranjang-container .keranjang-item img,
+.container #keranjang-container .keranjang-item h3,
+.container #keranjang-container .keranjang-item button,
+.container h3,
+.container h3 span {
+  margin: 10px 0px;
+}
+
+.container #keranjang-container .keranjang-item button,
+.container button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #004ca3;
+  color: #004ca3;
+  padding: 7px 15px;
+  border-radius: 7px;
+  transition: all 0.3s linear;
+}
+
+.container #keranjang-container .keranjang-item button:hover,
+.container button:hover {
+  background-color: #004ca3;
+  color: #eee;
+}

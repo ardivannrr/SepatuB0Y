@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <link
+      rel="shortcut icon"
+      href="img/logo/SepatuB0Y.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="css/checkout.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Keranjang Belanja</h2>
+      <div id="keranjang-container"></div>
+      <h3>Total Harga: <span id="total-harga">Rp 0</span></h3>
+      <button id="bayar">Bayar Sekarang</button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let keranjang = JSON.parse(localStorage.getItem("keranjang")) || [];
+        let keranjangContainer = document.getElementById("keranjang-container");
+        let totalHarga = 0;
+
+        if (keranjang.length === 0) {
+          keranjangContainer.innerHTML = "<p>Keranjang belanja kosong.</p>";
+        } else {
+          keranjang.forEach((item, index) => {
+            let div = document.createElement("div");
+            div.classList.add("keranjang-item");
+
+            div.innerHTML = `
+                <img src="${item.gambar}" alt="${item.nama}" width="200px">
+                <p>${item.nama} - Rp ${parseInt(
+              item.harga
+            ).toLocaleString()}</p>
+                <button class="hapus" data-index="${index}">Hapus</button>
+            `;
+
+            keranjangContainer.appendChild(div);
+            totalHarga += parseInt(item.harga) || 0;
+          });
+
+          document.getElementById("total-harga").textContent =
+            "Rp " + totalHarga.toLocaleString();
+        }
+
+        keranjangContainer.addEventListener("click", function (event) {
+          if (event.target.classList.contains("hapus")) {
+            let index = event.target.getAttribute("data-index");
+
+            Swal.fire({
+              title: "Hapus Produk?",
+              text: "Apakah Anda yakin ingin menghapus produk ini dari keranjang?",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonText: "Ya, hapus!",
+              cancelButtonText: "Batal",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                keranjang.splice(index, 1);
+                localStorage.setItem("keranjang", JSON.stringify(keranjang));
+              }
+            });
+          }
+        });
+
+        document.getElementById("bayar").addEventListener("click", function () {
+          if (keranjang.length === 0) {
+            Swal.fire({
+              title: "Keranjang Kosong!",
+              text: "Silakan tambahkan produk ke keranjang sebelum checkout.",
+              icon: "error",
+              confirmButtonText: "OK",
+            });
+            return;
+          }
+
+          Swal.fire({
+            title: "Terima Kasih!",
+            text: "Pesanan Anda telah diproses.",
+            icon: "success",
+            confirmButtonText: "Kembali ke Beranda",
+          }).then(() => {
+            localStorage.removeItem("keranjang");
+            location.href = "index.html";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
