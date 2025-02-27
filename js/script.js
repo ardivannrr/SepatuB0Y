@@ -2,32 +2,32 @@ produk = [
   {
     nama: "Sepatu Air Jordan",
     harga: "10000000",
-    gambar: "../img/produk/sepatu1.jpg",
+    gambar: "img/produk/sepatu1.jpg",
   },
   {
     nama: "Sepatu Cloudtec",
     harga: "8000000",
-    gambar: "../img/produk/sepatu2.jpg",
+    gambar: "img/produk/sepatu2.jpg",
   },
   {
     nama: "Sepatu Power",
     harga: "15500000",
-    gambar: "../img/produk/sepatu3.jpg",
+    gambar: "img/produk/sepatu3.jpg",
   },
   {
     nama: "Sepatu Nike",
     harga: "7500000",
-    gambar: "../img/produk/sepatu4.jpg",
+    gambar: "img/produk/sepatu4.jpg",
   },
   {
     nama: "Sepatu Super Hero",
     harga: "5000000",
-    gambar: "../img/produk/sepatu5.jpg",
+    gambar: "img/produk/sepatu5.jpg",
   },
   {
     nama: "Sepatu Gel-Nimbus",
     harga: "9000000",
-    gambar: "../img/produk/sepatu6.jpg",
+    gambar: "img/produk/sepatu6.jpg",
   },
 ];
 
